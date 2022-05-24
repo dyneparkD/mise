@@ -1,5 +1,5 @@
 import styles from "../styles/Search.module.scss";
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import station_list from "../data/station_list.json";
 import { ResultsProps, SearchbarProps } from "../types/type";
@@ -9,16 +9,17 @@ import {
   faBookmark,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { bookmarkContext } from "../context/bookmarkContext";
 
 const Search = () => {
   const [search, setSearch] = useState("");
-  const [bookmark, setBookmark] = useState(["서울 강남구"]);
+  const { bookmark, dispatch } = useContext(bookmarkContext);
 
   const click = (station: string) => {
     if (bookmark.includes(station)) {
-      setBookmark(bookmark.filter((x) => x !== station));
+      dispatch({ type: "REMOVE_BOOKMARK", payload: station });
     } else {
-      setBookmark([...bookmark, station]);
+      dispatch({ type: "ADD_BOOKMARK", payload: station });
     }
   };
 

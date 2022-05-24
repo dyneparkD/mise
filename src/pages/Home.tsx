@@ -1,14 +1,15 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import MainCard from "../components/MainCard";
 import Navbar from "../components/Navbar";
 import SmallCard from "../components/SmallCard";
+import { bookmarkContext } from "../context/bookmarkContext";
 import styles from "../styles/Home.module.scss";
 import { dataMiseAPI } from "../types/type";
 
 const Home = () => {
-  const buttons = ["서울 종로구", "서울 강남구", "경기 수내동", "경기 신원동"];
-  const [station, setStation] = useState(buttons[0]);
+  const { bookmark } = useContext(bookmarkContext);
+  const [station, setStation] = useState(bookmark[0]);
   const [data, setData] = useState<dataMiseAPI>({
     dataTime: "0",
     pm10Value: 0,
@@ -24,7 +25,6 @@ const Home = () => {
     so2Value: 0,
     so2Grade: "0",
   });
-
   useEffect(() => {
     axios
       .get(`http://localhost:3001/mise/${station}`)
@@ -73,7 +73,7 @@ const Home = () => {
         />
       </div>
       <div className={styles.buttons}>
-        {buttons.map((item) => {
+        {bookmark.map((item: string) => {
           return (
             <button key={item} onClick={() => setStation(item)}>
               {item}
