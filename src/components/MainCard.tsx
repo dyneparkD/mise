@@ -13,8 +13,9 @@ import {
   faFaceTired,
 } from "@fortawesome/free-regular-svg-icons";
 import { MainCardProps, MainCardTextProps } from "../types/type";
+import Loading from "./Loading";
 
-const MainCard: FC<MainCardProps> = ({ location, time, level }) => {
+const MainCard: FC<MainCardProps> = ({ location, time, level, isLoading }) => {
   const Message = {
     0: <MainCardText status="???" message="데이터를 불러올 수 없습니다." />,
     1: <MainCardText status="최고" message="먼지 하나 없네요!" />,
@@ -28,22 +29,22 @@ const MainCard: FC<MainCardProps> = ({ location, time, level }) => {
   };
 
   const Icon = {
-    0: <FontAwesomeIcon icon={faFaceGrinBeamSweat} />,
-    1: <FontAwesomeIcon icon={faFaceGrinStars} />,
-    2: <FontAwesomeIcon icon={faFaceLaughSquint} />,
-    3: <FontAwesomeIcon icon={faFaceLaugh} />,
-    4: <FontAwesomeIcon icon={faFaceSmile} />,
-    5: <FontAwesomeIcon icon={faFaceMeh} />,
-    6: <FontAwesomeIcon icon={faFaceFrown} />,
-    7: <FontAwesomeIcon icon={faFaceTired} />,
-    8: <FontAwesomeIcon icon={faFaceDizzy} />,
+    0: <FontAwesomeIcon className={styles.face} icon={faFaceGrinBeamSweat} />,
+    1: <FontAwesomeIcon className={styles.face} icon={faFaceGrinStars} />,
+    2: <FontAwesomeIcon className={styles.face} icon={faFaceLaughSquint} />,
+    3: <FontAwesomeIcon className={styles.face} icon={faFaceLaugh} />,
+    4: <FontAwesomeIcon className={styles.face} icon={faFaceSmile} />,
+    5: <FontAwesomeIcon className={styles.face} icon={faFaceMeh} />,
+    6: <FontAwesomeIcon className={styles.face} icon={faFaceFrown} />,
+    7: <FontAwesomeIcon className={styles.face} icon={faFaceTired} />,
+    8: <FontAwesomeIcon className={styles.face} icon={faFaceDizzy} />,
   };
 
   return (
     <div className={styles.MainCard}>
       <div className={styles.location}>{location}</div>
       <div className={styles.time}>{time}</div>
-      <div className={styles.icon}>{Icon[level]}</div>
+      <div className={styles.icon}>{isLoading ? <Loading /> : Icon[level]}</div>
       <div className={styles.Text}>{Message[level]}</div>
     </div>
   );

@@ -1,9 +1,13 @@
 import { Dispatch, SetStateAction } from "react";
+import { Value } from "sass";
 
-type level = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
+// type level = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
+type level = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 export type dataMiseAPI = {
   dataTime: string;
+  khaiValue: number;
+  khaiGrade: level;
   pm10Value: number;
   pm10Grade: level;
   pm25Value: number;
@@ -22,6 +26,7 @@ export type MainCardProps = {
   location: string;
   time: string;
   level: level;
+  isLoading: boolean;
 };
 
 export type MainCardTextProps = {
@@ -33,6 +38,7 @@ export type SmallCardProps = {
   title: string;
   value: string;
   level: level;
+  isLoading: boolean;
 };
 
 export type ResultsProps = {

@@ -13,8 +13,9 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { FC } from "react";
 import { SmallCardProps } from "../types/type";
+import Loading from "./Loading";
 
-const SmallCard: FC<SmallCardProps> = ({ title, level, value }) => {
+const SmallCard: FC<SmallCardProps> = ({ title, level, value, isLoading }) => {
   const Icon = {
     0: <FontAwesomeIcon icon={faFaceGrinBeamSweat} />,
     1: <FontAwesomeIcon icon={faFaceGrinStars} />,
@@ -42,7 +43,7 @@ const SmallCard: FC<SmallCardProps> = ({ title, level, value }) => {
   return (
     <div className={styles.SmallCard}>
       <div className={styles.location}>{title}</div>
-      <div className={styles.icon}>{Icon[level]}</div>
+      <div className={styles.icon}>{isLoading ? <Loading /> : Icon[level]}</div>
       <div className={styles.status}>{Status[level]}</div>
       <div className={styles.value}>{value}</div>
     </div>
