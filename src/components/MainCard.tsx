@@ -17,7 +17,7 @@ import Loading from "./Loading";
 
 const MainCard: FC<MainCardProps> = ({ location, time, level, isLoading }) => {
   const Message = {
-    0: <MainCardText status="???" message="데이터를 불러올 수 없습니다." />,
+    0: <MainCardText status="Error" message="데이터를 불러올 수 없습니다." />,
     1: <MainCardText status="최고" message="먼지 하나 없네요!" />,
     2: <MainCardText status="매우좋음" message="공기가 너무 좋아요!" />,
     3: <MainCardText status="좋음" message="쾌적한 날이에요~" />,

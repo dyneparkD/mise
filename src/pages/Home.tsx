@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import MainCard from "../components/MainCard";
+import Modal from "../components/Modal";
 import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 import SmallCard from "../components/SmallCard";
 import { bookmarkContext } from "../context/bookmarkContext";
 import styles from "../styles/Home.module.scss";
@@ -11,8 +13,9 @@ const Home = () => {
   const { bookmark } = useContext(bookmarkContext);
   const [station, setStation] = useState(bookmark[0]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
   const [data, setData] = useState<dataMiseAPI>({
-    dataTime: "0",
+    dataTime: "",
     khaiValue: 0,
     khaiGrade: 0,
     pm10Value: 0,
@@ -28,12 +31,49 @@ const Home = () => {
     so2Value: 0,
     so2Grade: 0,
   });
+  const cardsArray = [
+    {
+      title: "미세먼지",
+      level: data.pm10Grade,
+      value: data.pm10Value,
+      unit: "μg/m³",
+    },
+    {
+      title: "초미세먼지",
+      level: data.pm25Grade,
+      value: data.pm25Value,
+      unit: "μg/m³",
+    },
+    {
+      title: "오존",
+      level: data.o3Grade,
+      value: data.o3Value,
+      unit: "ppm",
+    },
+    {
+      title: "이산화질소",
+      level: data.no2Grade,
+      value: data.no2Value,
+      unit: "ppm",
+    },
+    {
+      title: "일산화탄소",
+      level: data.coGrade,
+      value: data.coValue,
+      unit: "ppm",
+    },
+    {
+      title: "아황산가스",
+      level: data.so2Grade,
+      value: data.so2Value,
+      unit: "ppm",
+    },
+  ];
 
   useEffect(() => {
-    let stationName = station.split(" ");
     setIsLoading(true);
     axios
-      .get(`http://localhost:3001/mise/${stationName[1]}`)
+      .get(`http://localhost:3001/mise/${station}`)
       .then((res) => {
         setData(res.data[0]);
         setIsLoading(false);
@@ -46,50 +86,24 @@ const Home = () => {
 
   return (
     <div className={styles.Home} id={`bg${data.khaiGrade}`}>
-      <Navbar />
+      <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <MainCard
         location={station}
         time={data.dataTime}
-        level={2}
+        level={data.khaiGrade}
         isLoading={isLoading}
       />
       <div className={styles.cards}>
-        <SmallCard
-          title="미세먼지"
-          level={data.pm10Grade}
-          value={`${data.pm10Value} μg/m³`}
-          isLoading={isLoading}
-        />
-        <SmallCard
-          title="초미세먼지"
-          level={data.pm25Grade}
-          value={`${data.pm25Value} μg/m³`}
-          isLoading={isLoading}
-        />
-        <SmallCard
-          title="오존"
-          level={data.o3Grade}
-          value={`${data.o3Value} ppm`}
-          isLoading={isLoading}
-        />
-        <SmallCard
-          title="이산화질소"
-          level={data.no2Grade}
-          value={`${data.no2Value} ppm`}
-          isLoading={isLoading}
-        />
-        <SmallCard
-          title="일산화탄소"
-          level={data.coGrade}
-          value={`${data.coValue} ppm`}
-          isLoading={isLoading}
-        />
-        <SmallCard
-          title="아황산가스"
-          level={data.so2Grade}
-          value={`${data.so2Value} ppm`}
-          isLoading={isLoading}
-        />
+        {cardsArray.map((card) => {
+          return (
+            <SmallCard
+              title={card.title}
+              level={card.level}
+              value={`${card.value} ${card.unit}`}
+              isLoading={isLoading}
+            />
+          );
+        })}
       </div>
       <div className={styles.buttons}>
         {bookmark.map((item: string) => {
@@ -100,6 +114,9 @@ const Home = () => {
           );
         })}
       </div>
+      <Modal isOpen={showSidebar} setIsOpen={setShowSidebar}>
+        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+      </Modal>
     </div>
   );
 };

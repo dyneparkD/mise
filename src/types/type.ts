@@ -1,5 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
-import { Value } from "sass";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 // type level = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
 type level = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
@@ -50,4 +49,15 @@ export type ResultsProps = {
 export type SearchbarProps = {
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
+};
+
+export type NavbarProps = {
+  showSidebar: boolean;
+  setShowSidebar: (showSidebar: boolean) => void;
+};
+
+export type ModalProps = {
+  isOpen: boolean;
+  setIsOpen: (showSidebar: boolean) => void;
+  children: ReactNode;
 };

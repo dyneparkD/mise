@@ -7,17 +7,22 @@ import {
 import { faBookmark, faMap } from "@fortawesome/free-regular-svg-icons";
 import styles from "../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
+import { FC } from "react";
+import { NavbarProps } from "../types/type";
 
-const Navbar = () => {
+const Navbar: FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
   return (
     <div className={styles.Navbar}>
       <div className={styles.left}>
-        <FontAwesomeIcon icon={faBars} />
+        <FontAwesomeIcon
+          icon={faBars}
+          onClick={() => setShowSidebar(!showSidebar)}
+        />
       </div>
       <ul className={styles.right}>
         <li>
-          <Link to="/search">
-            <FontAwesomeIcon icon={faSearch} />
+          <Link to="/share">
+            <FontAwesomeIcon icon={faShareNodes} />
           </Link>
         </li>
         <li>
@@ -26,13 +31,8 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/share">
-            <FontAwesomeIcon icon={faShareNodes} />
-          </Link>
-        </li>
-        <li>
-          <Link to="/bookmark">
-            <FontAwesomeIcon icon={faBookmark} />
+          <Link to="/search">
+            <FontAwesomeIcon icon={faSearch} />
           </Link>
         </li>
       </ul>
