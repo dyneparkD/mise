@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 type level = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
 
 export type dataMiseAPI = {
@@ -31,4 +33,15 @@ export type SmallCardProps = {
   title: string;
   value: string;
   level: level;
+};
+
+export type ResultsProps = {
+  search: string;
+  bookmark: string[];
+  click: (station: string) => void;
+};
+
+export type SearchbarProps = {
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
 };

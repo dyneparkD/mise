@@ -1,0 +1,102 @@
+import styles from "../styles/Search.module.scss";
+import { FC, useState } from "react";
+import { Link } from "react-router-dom";
+import station_list from "../data/station_list.json";
+import { ResultsProps, SearchbarProps } from "../types/type";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleLeft,
+  faBookmark,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+
+const Search = () => {
+  const [search, setSearch] = useState("");
+  const [bookmark, setBookmark] = useState(["서울 강남구"]);
+
+  const click = (station: string) => {
+    if (bookmark.includes(station)) {
+      setBookmark(bookmark.filter((x) => x !== station));
+    } else {
+      setBookmark([...bookmark, station]);
+    }
+  };
+
+  return (
+    <div className={styles.Search}>
+      <Searchbar search={search} setSearch={setSearch} />
+      <Results search={search} bookmark={bookmark} click={click} />
+    </div>
+  );
+};
+
+export default Search;
+
+const Searchbar: FC<SearchbarProps> = ({ search, setSearch }) => {
+  return (
+    <div className={styles.searchbar}>
+      <Link to="/">
+        <FontAwesomeIcon icon={faAngleLeft} className={styles.leftIcon} />
+      </Link>
+      <input
+        type="text"
+        placeholder="동/읍/면 을 입력해주세요"
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+      />
+      <FontAwesomeIcon
+        icon={faXmark}
+        className={styles.xIcon}
+        onClick={() => setSearch("")}
+      />
+    </div>
+  );
+};
+
+const Results: FC<ResultsProps> = ({ search, bookmark, click }) => {
+  return (
+    <div className={styles.Results}>
+      {search === ""
+        ? bookmark.map((station) => {
+            return (
+              <div
+                key={station}
+                className={styles.result}
+                onClick={() => click(station)}
+              >
+                <div className={styles.text}>{station}</div>
+                <FontAwesomeIcon
+                  icon={faBookmark}
+                  className={styles.bookmarkIcon}
+                  id={bookmark.includes(station) ? styles.bookmarked : ""}
+                />
+              </div>
+            );
+          })
+        : station_list.stations
+            .filter((station) => station.adress.includes(search))
+            .map((station) => {
+              return (
+                <div
+                  key={station.id}
+                  className={styles.result}
+                  onClick={() => click(`${station.state} ${station.district}`)}
+                >
+                  <div className={styles.text}>
+                    {station.state} {station.district} : {station.adress}
+                  </div>
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    className={styles.bookmarkIcon}
+                    id={
+                      bookmark.includes(`${station.state} ${station.district}`)
+                        ? styles.bookmarked
+                        : ""
+                    }
+                  />
+                </div>
+              );
+            })}
+    </div>
+  );
+};
