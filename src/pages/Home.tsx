@@ -97,6 +97,7 @@ const Home = () => {
         {cardsArray.map((card) => {
           return (
             <SmallCard
+              key={card.title}
               title={card.title}
               level={card.level}
               value={`${card.value} ${card.unit}`}
@@ -113,6 +114,10 @@ const Home = () => {
             </button>
           );
         })}
+      </div>
+      <div className={styles.fyi}>
+        ※본 자료는 한국환경공단&#40;AirKorea&#41;에서 제공하는 “인증을 받지 않은
+        실시간자료”이며 실제 값과 다를 수 있습니다.
       </div>
       <Modal isOpen={showSidebar} setIsOpen={setShowSidebar}>
         <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
