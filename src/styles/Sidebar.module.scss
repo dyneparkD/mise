@@ -1,0 +1,55 @@
+@use "./global" as *;
+
+.Sidebar {
+  transform: translateX(-100%);
+  transition: transform 300ms;
+  width: clamp(200px, 50%, 400px);
+  height: 100%;
+  background-color: white;
+  .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(28, 195, 109);
+    color: white;
+    .logo {
+      margin-top: 2rem;
+      font-size: 5rem;
+    }
+    .name {
+      margin-top: 0.75rem;
+      font-weight: bold;
+    }
+    .version {
+      margin-bottom: 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
+  .nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 1;
+    background-color: white;
+    li a {
+      display: flex;
+      align-items: center;
+      .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 1rem;
+      }
+      .text {
+        font-size: 0.9rem;
+      }
+      &:hover {
+        background-color: lightgrey;
+      }
+    }
+  }
+}
+
+#show {
+  transform: translateX(0%);
+}
