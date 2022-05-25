@@ -2,6 +2,8 @@
 
 $width: 7rem;
 $tx_color: #979797;
+$bg: #000005d9;
+$br: 0.5rem;
 
 .Map {
   width: 100%;
@@ -12,39 +14,45 @@ $tx_color: #979797;
     width: 100%;
     position: relative;
     display: flex;
-    // max-width: $max_width;
     margin: auto;
     iframe {
       width: 100%;
       min-height: 45vh;
       border: none;
     }
-    .text {
+    .topRight {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      padding: 0.5rem;
-      width: $width;
-      background-color: #181818;
-      border-radius: 4px;
-      color: $tx_color;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+      gap: 0.25rem;
+      div,
+      button {
+        padding: 0.5rem;
+        width: $width;
+        background-color: $bg;
+        border-radius: $br;
+        color: $tx_color;
+        text-align: center;
+        border: none;
+      }
+      button {
+        cursor: pointer;
+      }
     }
     .scale {
       position: absolute;
-      top: 4rem;
-      right: 1rem;
+      bottom: 1rem;
+      left: 8rem;
       width: $width;
-      padding: 0.5rem;
-      background-color: #181818;
-      border-radius: 4px;
+      padding: 0.57rem 0.75rem;
+      background-color: $bg;
+      border-radius: $br;
       color: $tx_color;
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       .circle {
         color: #3aff3a;
       }

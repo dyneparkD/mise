@@ -5,6 +5,7 @@
   font-size: 1.5rem;
   position: sticky;
   top: 0;
+  z-index: 10;
   background-color: $bg;
   .wrapper {
     display: flex;

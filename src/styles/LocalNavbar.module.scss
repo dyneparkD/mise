@@ -4,6 +4,7 @@
   background-color: $bg_dark;
   position: sticky;
   top: 0;
+  z-index: 10;
   .wrapper {
     margin: auto;
     max-width: $max_width;
