@@ -1,0 +1,29 @@
+@use "./global" as *;
+
+.Navbar {
+  color: $text;
+  font-size: 1.5rem;
+  position: sticky;
+  top: 0;
+  background-color: $bg;
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: $max_width;
+    margin: auto;
+    .left {
+      padding: 1rem;
+      cursor: pointer;
+    }
+    .right {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      li {
+        cursor: pointer;
+        padding: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.Loading {
+  .icon {
+    color: white;
+    animation: rotate 1s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

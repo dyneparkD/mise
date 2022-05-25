@@ -1,0 +1,39 @@
+@use "./global" as *;
+
+#bg2 {
+  background-color: $lv_2;
+}
+
+.Home {
+  position: absolute;
+  min-width: 320px;
+  width: 100%;
+  min-height: 100%;
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: $max_width;
+    margin: auto;
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: $max_width;
+    margin: auto;
+    button {
+      border: 2px solid $white;
+      border-radius: 1rem;
+      background: none;
+      color: $white;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      cursor: pointer;
+    }
+  }
+  .fyi {
+    margin: 5rem auto;
+    text-align: center;
+    color: white;
+  }
+}
