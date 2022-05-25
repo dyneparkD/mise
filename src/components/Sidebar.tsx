@@ -46,7 +46,7 @@ const Sidebar: FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
         <li>
           <Link to="/about">
             <FontAwesomeIcon icon={faCircleInfo} className={styles.icon} />
-            <div className={styles.text}>About</div>
+            <div className={styles.text}>정보</div>
           </Link>
         </li>
         <li>

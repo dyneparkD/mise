@@ -3,76 +3,83 @@
 .Search {
   width: 100%;
   height: 100vh;
-  background-color: palegoldenrod;
+  background-color: $bg;
   .searchbar {
-    background-color: green;
+    background-color: $bg_dark;
     color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .leftIcon,
-    .xIcon {
-      font-size: 1.5rem;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-    input {
-      width: 100%;
-      flex: 1;
-      padding: 0.5rem 1rem;
-      border: none;
-      background: none;
-      color: white;
-      font-size: 1rem;
-    }
-    ::placeholder {
-      color: white;
-      opacity: 1;
-    }
-    :focus {
-      outline: none;
-    }
-  }
-  .Results {
-    margin: 1rem;
-    background-color: white;
-    border-radius: 4px;
-    max-height: 91.5vh;
-    overflow-y: auto;
-    .result {
+    .wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 6px;
-      margin: 0 4px;
-      padding: 0.5rem 0.25rem;
-      border-bottom: 1px solid lightgrey;
-      cursor: pointer;
-      &:hover {
-        background-color: lightgrey;
-      }
-      .text {
-        word-break: keep-all;
-      }
-      .bookmarkIcon {
-        opacity: 0;
-        color: green;
+      max-width: $max_width;
+      margin: auto;
+      .leftIcon,
+      .xIcon {
         font-size: 1.5rem;
-        margin: 0;
-        padding: 0 0.25rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
       }
-      #bookmarked {
+      input {
+        width: 100%;
+        flex: 1;
+        padding: 0.5rem 1rem;
+        border: none;
+        background: none;
+        color: white;
+        font-size: 1rem;
+      }
+      ::placeholder {
+        color: white;
         opacity: 1;
       }
+      :focus {
+        outline: none;
+      }
     }
-    :first-child {
-      margin-top: 4px;
-      border-radius: 4px 4px 0 0;
-    }
-    :last-child {
-      border: none;
-      margin-bottom: 4px;
-      border-radius: 0 0 4px 4px;
+  }
+  .Results {
+    .wrapper {
+      max-width: $max_width;
+      margin: 1rem auto;
+      background-color: white;
+      border-radius: 4px;
+      max-height: 91.5vh;
+      overflow-y: auto;
+      .result {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+        margin: 0 4px;
+        padding: 0.5rem 0.25rem;
+        border-bottom: 1px solid lightgrey;
+        cursor: pointer;
+        &:hover {
+          background-color: lightgrey;
+        }
+        .text {
+          word-break: keep-all;
+        }
+        .bookmarkIcon {
+          opacity: 0;
+          color: green;
+          font-size: 1.5rem;
+          margin: 0;
+          padding: 0 0.25rem;
+        }
+        #bookmarked {
+          opacity: 1;
+        }
+      }
+      :first-child {
+        margin-top: 4px;
+        border-radius: 4px 4px 0 0;
+      }
+      :last-child {
+        border: none;
+        margin-bottom: 4px;
+        border-radius: 0 0 4px 4px;
+      }
     }
   }
 }

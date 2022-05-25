@@ -61,3 +61,7 @@ export type ModalProps = {
   setIsOpen: (showSidebar: boolean) => void;
   children: ReactNode;
 };
+
+export type LocalNavbarProps = {
+  current: string;
+};
