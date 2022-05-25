@@ -1,6 +1,5 @@
 @use "./global" as *;
 
-$width: 7rem;
 $tx_color: #979797;
 $bg: #000005d9;
 $br: 0.5rem;
@@ -17,7 +16,7 @@ $br: 0.5rem;
     margin: auto;
     iframe {
       width: 100%;
-      min-height: 45vh;
+      min-height: 90vh;
       border: none;
     }
     .topRight {
@@ -27,26 +26,46 @@ $br: 0.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
-      div,
       button {
         padding: 0.5rem;
-        width: $width;
+        width: 7rem;
         background-color: $bg;
         border-radius: $br;
         color: $tx_color;
         text-align: center;
         border: none;
+        &:hover {
+          color: #eee;
+        }
       }
-      button {
-        cursor: pointer;
+      #selected {
+        color: #eee;
       }
     }
-    .scale {
+    .bottomRight {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.25rem;
+      button {
+        padding: 0.75rem;
+        background-color: $bg;
+        border-radius: $br;
+        color: $tx_color;
+        text-align: center;
+        border: none;
+        &:hover {
+          color: #eee;
+        }
+      }
+    }
+    .bottomLeft {
       position: absolute;
       bottom: 1rem;
       left: 8rem;
-      width: $width;
-      padding: 0.57rem 0.75rem;
+      width: 6rem;
+      padding: 0.55rem 1rem;
       background-color: $bg;
       border-radius: $br;
       color: $tx_color;
@@ -66,5 +85,8 @@ $br: 0.5rem;
     align-items: center;
     flex-direction: column;
     color: $white;
+  }
+  button {
+    cursor: pointer;
   }
 }

@@ -1,4 +1,5 @@
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import LocalNavbar from "../components/LocalNavbar";
@@ -10,7 +11,9 @@ const Map = () => {
     latitude: 37.53,
   };
   const [position, setPosition] = useState(seoul);
-  const [pm, setPm] = useState(10);
+  const [overlay, setOverlay] = useState("pm10");
+  const [scale, setScale] = useState(4000);
+  let src = `https://earth.nullschool.net/#current/particulates/surface/level/overlay=${overlay}/orthographic=127,37,${scale}/loc=${position.longitude},${position.latitude}`;
 
   function getLocation() {
     if (navigator.geolocation) {
@@ -24,33 +27,37 @@ const Map = () => {
       alert("GPS를 지원하지 않습니다");
     }
   }
-  console.log(position);
-  let pm10 = `https://earth.nullschool.net/#current/particulates/surface/level/overlay=pm10/orthographic=127,37,4000/loc=${position.longitude},${position.latitude}`;
-  let pm25 = `https://earth.nullschool.net/#current/particulates/surface/level/overlay=pm2.5/orthographic=127,37,4000/loc=${position.longitude},${position.latitude}`;
   return (
     <div className={styles.Map}>
       <LocalNavbar current="지도" />
       <section>
-        <iframe title="PM10" src={pm10} />
+        <iframe title={overlay} src={src} />
         <div className={styles.topRight}>
-          <button>미세먼지</button>
+          <button
+            id={overlay === "pm10" ? styles.selected : ""}
+            onClick={() => setOverlay("pm10")}
+          >
+            미세먼지
+          </button>
+          <button
+            id={overlay === "pm2.5" ? styles.selected : ""}
+            onClick={() => setOverlay("pm2.5")}
+          >
+            초미세먼지
+          </button>
           <button onClick={() => getLocation()}>GPS</button>
           <button onClick={() => setPosition(seoul)}>서울</button>
         </div>
-        <div className={styles.scale}>
-          <div>현재위치</div>
-          <FontAwesomeIcon icon={faCircle} className={styles.circle} />
+        <div className={styles.bottomRight}>
+          <button onClick={() => setScale((prev) => prev - 500)}>
+            <FontAwesomeIcon icon={faMinus} />
+          </button>
+          <button onClick={() => setScale((prev) => prev + 500)}>
+            <FontAwesomeIcon icon={faPlus} />
+          </button>
         </div>
-      </section>
-      <section>
-        <iframe title="PM2.5" src={pm25} />
-        <div className={styles.topRight}>
-          <button>초미세먼지</button>
-          <button onClick={() => getLocation()}>GPS</button>
-          <button onClick={() => setPosition(seoul)}>서울</button>
-        </div>
-        <div className={styles.scale}>
-          <div>현재위치</div>
+        <div className={styles.bottomLeft}>
+          <div>위치</div>
           <FontAwesomeIcon icon={faCircle} className={styles.circle} />
         </div>
       </section>
