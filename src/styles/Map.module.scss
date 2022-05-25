@@ -1,0 +1,62 @@
+@use "./global" as *;
+
+$width: 7rem;
+$tx_color: #979797;
+
+.Map {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: $bg_dark;
+  section {
+    width: 100%;
+    position: relative;
+    display: flex;
+    // max-width: $max_width;
+    margin: auto;
+    iframe {
+      width: 100%;
+      min-height: 45vh;
+      border: none;
+    }
+    .text {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem;
+      width: $width;
+      background-color: #181818;
+      border-radius: 4px;
+      color: $tx_color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .scale {
+      position: absolute;
+      top: 4rem;
+      right: 1rem;
+      width: $width;
+      padding: 0.5rem;
+      background-color: #181818;
+      border-radius: 4px;
+      color: $tx_color;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .circle {
+        color: #3aff3a;
+      }
+    }
+  }
+  .bottom {
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: $white;
+  }
+}

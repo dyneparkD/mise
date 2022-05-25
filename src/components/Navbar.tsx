@@ -18,21 +18,22 @@ const Navbar: FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
           <FontAwesomeIcon
             icon={faBars}
             onClick={() => setShowSidebar(!showSidebar)}
+            title="메뉴"
           />
         </div>
         <ul className={styles.right}>
           <li>
-            <Link to="/share">
+            <Link to="/share" title="공유">
               <FontAwesomeIcon icon={faShareNodes} />
             </Link>
           </li>
           <li>
-            <Link to="/map">
+            <Link to="/map" title="지도">
               <FontAwesomeIcon icon={faMap} />
             </Link>
           </li>
           <li>
-            <Link to="/search">
+            <Link to="/search" title="검색">
               <FontAwesomeIcon icon={faSearch} />
             </Link>
           </li>

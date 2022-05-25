@@ -12,7 +12,7 @@
     max-width: $max_width;
     margin: auto;
     .left {
-      padding: 1rem;
+      padding: 0.5rem 1rem;
       cursor: pointer;
     }
     .right {
@@ -22,7 +22,7 @@
       display: flex;
       li {
         cursor: pointer;
-        padding: 1rem;
+        padding: 0.5rem 1rem;
       }
     }
   }
