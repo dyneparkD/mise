@@ -11,7 +11,7 @@ import { dataMiseAPI } from "../types/type";
 
 const Home = () => {
   const { bookmark } = useContext(bookmarkContext);
-  const [station, setStation] = useState(bookmark[0]);
+  const [station, setStation] = useState("서울 종로구");
   const [isLoading, setIsLoading] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [data, setData] = useState<dataMiseAPI>({
@@ -69,7 +69,6 @@ const Home = () => {
       unit: "ppm",
     },
   ];
-
   useEffect(() => {
     setIsLoading(true);
     axios
@@ -85,12 +84,12 @@ const Home = () => {
   }, [station]);
 
   return (
-    <div className={styles.Home} id={`bg${data.khaiGrade}`}>
+    <div className={styles.Home} id={`bg${data.khaiGrade || 0}`}>
       <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <MainCard
         location={station}
         time={data.dataTime}
-        level={data.khaiGrade}
+        level={data.khaiGrade || 0}
         isLoading={isLoading}
       />
       <div className={styles.cards}>
@@ -99,7 +98,7 @@ const Home = () => {
             <SmallCard
               key={card.title}
               title={card.title}
-              level={card.level}
+              level={card.level || 0}
               value={`${card.value} ${card.unit}`}
               isLoading={isLoading}
             />
