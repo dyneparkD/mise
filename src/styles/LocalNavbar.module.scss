@@ -18,9 +18,15 @@
       cursor: pointer;
     }
     .current {
-      flex: 1;
       padding: 0.5rem 1rem;
       font-size: 1rem;
+    }
+    .rightIcon {
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      pointer-events: none;
+      opacity: 0;
     }
   }
 }

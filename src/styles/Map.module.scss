@@ -8,7 +8,7 @@ $br: 0.5rem;
   width: 100%;
   min-height: 100vh;
   height: 100%;
-  background-color: $bg_dark;
+  background-color: lightgrey;
   section {
     width: 100%;
     position: relative;
@@ -78,13 +78,14 @@ $br: 0.5rem;
     }
   }
   .bottom {
+    border-top: 2px solid grey;
     padding: 1rem;
     display: flex;
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: $white;
+    background-color: lightgrey;
   }
   button {
     cursor: pointer;

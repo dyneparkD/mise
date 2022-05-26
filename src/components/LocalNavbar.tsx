@@ -13,6 +13,9 @@ const LocalNavbar: FC<LocalNavbarProps> = ({ current }) => {
           <FontAwesomeIcon icon={faAngleLeft} className={styles.leftIcon} />
         </Link>
         <div className={styles.current}>{current}</div>
+        <div>
+          <FontAwesomeIcon icon={faAngleLeft} className={styles.rightIcon} />
+        </div>
       </div>
     </div>
   );
