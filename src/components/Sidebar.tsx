@@ -40,7 +40,7 @@ const Sidebar: FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
         <li>
           <Link to="/map">
             <FontAwesomeIcon icon={faMap} className={styles.icon} />
-            <div className={styles.text}>예보 지도</div>
+            <div className={styles.text}>지도</div>
           </Link>
         </li>
         <li>

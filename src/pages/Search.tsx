@@ -37,7 +37,7 @@ const Searchbar: FC<SearchbarProps> = ({ search, setSearch }) => {
   return (
     <div className={styles.searchbar}>
       <div className={styles.wrapper}>
-        <Link to="/">
+        <Link to="/" title="돌아가기">
           <FontAwesomeIcon icon={faAngleLeft} className={styles.leftIcon} />
         </Link>
         <input
@@ -50,6 +50,7 @@ const Searchbar: FC<SearchbarProps> = ({ search, setSearch }) => {
           icon={faXmark}
           className={styles.xIcon}
           onClick={() => setSearch("")}
+          title="검색어 삭제"
         />
       </div>
     </div>
@@ -72,6 +73,7 @@ const Results: FC<ResultsProps> = ({ search, bookmark, click }) => {
                   <FontAwesomeIcon
                     icon={faBookmark}
                     className={styles.bookmarkIcon}
+                    title="북마크"
                     id={bookmark.includes(station) ? styles.bookmarked : ""}
                   />
                 </div>
@@ -94,6 +96,7 @@ const Results: FC<ResultsProps> = ({ search, bookmark, click }) => {
                     <FontAwesomeIcon
                       icon={faBookmark}
                       className={styles.bookmarkIcon}
+                      title="북마크"
                       id={
                         bookmark.includes(
                           `${station.state} ${station.district}`

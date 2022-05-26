@@ -9,10 +9,13 @@ const LocalNavbar: FC<LocalNavbarProps> = ({ current }) => {
   return (
     <div className={styles.LocalNavbar}>
       <div className={styles.wrapper}>
-        <Link to="/">
+        <Link to="/" title="돌아가기">
           <FontAwesomeIcon icon={faAngleLeft} className={styles.leftIcon} />
         </Link>
         <div className={styles.current}>{current}</div>
+        <div>
+          <FontAwesomeIcon icon={faAngleLeft} className={styles.rightIcon} />
+        </div>
       </div>
     </div>
   );
