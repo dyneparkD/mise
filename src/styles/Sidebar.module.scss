@@ -33,6 +33,7 @@
     opacity: 1;
     background-color: white;
     li a {
+      flex: 1;
       display: flex;
       align-items: center;
       .icon {
@@ -45,6 +46,26 @@
       }
       &:hover {
         background-color: lightgrey;
+      }
+    }
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .slideDiv {
+        display: flex;
+        align-items: center;
+        .icon {
+          width: 1.5rem;
+          height: 1.5rem;
+          padding: 1rem;
+        }
+        .text {
+          font-size: 0.9rem;
+        }
+      }
+      .slide {
+        padding: 0 1rem;
       }
     }
   }

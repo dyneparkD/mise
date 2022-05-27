@@ -6,66 +6,80 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import SmallCard from "../components/SmallCard";
 import { bookmarkContext } from "../context/bookmarkContext";
+import { lvContext } from "../context/lvContext";
 import styles from "../styles/Home.module.scss";
 import { dataMiseAPI } from "../types/type";
 
 const Home = () => {
   const { bookmark } = useContext(bookmarkContext);
+  const { isLv8 } = useContext(lvContext);
   const [station, setStation] = useState("서울 종로구");
   const [isLoading, setIsLoading] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [data, setData] = useState<dataMiseAPI>({
-    dataTime: "",
-    khaiValue: 0,
-    khaiGrade: 0,
-    pm10Value: 0,
-    pm10Grade: 0,
-    pm25Value: 0,
-    pm25Grade: 0,
-    o3Value: 0,
-    o3Grade: 0,
-    coValue: 0,
-    coGrade: 0,
-    no2Value: 0,
-    no2Grade: 0,
-    so2Value: 0,
-    so2Grade: 0,
+    co: "0.0",
+    coLv4: 0,
+    coLv8: 0,
+    dataTime: "0000-00-00 00:00",
+    maxLv4: 0,
+    maxLv8: 0,
+    no2: "0.000",
+    no2Lv4: 0,
+    no2Lv8: 0,
+    o3: "0.000",
+    o3Lv4: 0,
+    o3Lv8: 0,
+    pm10: "0",
+    pm10Lv4: 0,
+    pm10Lv8: 0,
+    pm25: "0",
+    pm25Lv4: 0,
+    pm25Lv8: 0,
+    so2: "0.000",
+    so2Lv4: 0,
+    so2Lv8: 0,
   });
   const cardsArray = [
     {
       title: "미세먼지",
-      level: data.pm10Grade,
-      value: data.pm10Value,
+      level4: data.pm10Lv4,
+      level8: data.pm10Lv8,
+      value: data.pm10,
       unit: "μg/m³",
     },
     {
       title: "초미세먼지",
-      level: data.pm25Grade,
-      value: data.pm25Value,
+      level4: data.pm25Lv4,
+      level8: data.pm25Lv8,
+      value: data.pm25,
       unit: "μg/m³",
     },
     {
       title: "오존",
-      level: data.o3Grade,
-      value: data.o3Value,
+      level4: data.o3Lv4,
+      level8: data.o3Lv8,
+      value: data.o3,
       unit: "ppm",
     },
     {
       title: "이산화질소",
-      level: data.no2Grade,
-      value: data.no2Value,
+      level4: data.no2Lv4,
+      level8: data.no2Lv8,
+      value: data.no2,
       unit: "ppm",
     },
     {
       title: "일산화탄소",
-      level: data.coGrade,
-      value: data.coValue,
+      level4: data.coLv4,
+      level8: data.coLv8,
+      value: data.co,
       unit: "ppm",
     },
     {
       title: "아황산가스",
-      level: data.so2Grade,
-      value: data.so2Value,
+      level4: data.so2Lv4,
+      level8: data.so2Lv8,
+      value: data.so2,
       unit: "ppm",
     },
   ];
@@ -74,7 +88,8 @@ const Home = () => {
     axios
       .get(`http://localhost:3001/mise/${station}`)
       .then((res) => {
-        setData(res.data[0]);
+        console.log(res.data);
+        setData(res.data);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -84,12 +99,12 @@ const Home = () => {
   }, [station]);
 
   return (
-    <div className={styles.Home} id={`bg${data.khaiGrade || 0}`}>
+    <div className={styles.Home} id={`bg${isLv8 ? data.maxLv8 : data.maxLv4}`}>
       <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <MainCard
         location={station}
         time={data.dataTime}
-        level={data.khaiGrade || 0}
+        level={data.maxLv8}
         isLoading={isLoading}
       />
       <div className={styles.cards}>
@@ -98,7 +113,7 @@ const Home = () => {
             <SmallCard
               key={card.title}
               title={card.title}
-              level={card.level || 0}
+              level={isLv8 ? card.level8 : card.level4}
               value={`${card.value} ${card.unit}`}
               isLoading={isLoading}
             />
