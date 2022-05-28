@@ -55,10 +55,13 @@ export type SmallCardProps = {
   isLoading: boolean;
 };
 
-export type ResultsProps = {
+export type ResultProps = {
+  stateAndDistrict: string;
+  text: string;
+};
+
+export type ResultsFoundProps = {
   search: string;
-  bookmark: string[];
-  click: (station: string) => void;
 };
 
 export type SearchbarProps = {
