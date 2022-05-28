@@ -104,7 +104,7 @@ const Home = () => {
       <MainCard
         location={station}
         time={data.dataTime}
-        level={data.maxLv8}
+        level={isLv8 ? data.maxLv8 : data.maxLv4}
         isLoading={isLoading}
       />
       <div className={styles.cards}>

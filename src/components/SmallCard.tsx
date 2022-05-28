@@ -29,7 +29,7 @@ const SmallCard: FC<SmallCardProps> = ({ title, level, value, isLoading }) => {
   };
 
   const Status = {
-    0: "???",
+    0: "Error",
     1: "최고",
     2: "매우좋음",
     3: "좋음",

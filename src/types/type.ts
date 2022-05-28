@@ -1,7 +1,16 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
-// type level = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
-type level = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+enum level {
+  로딩 = 0,
+  최고 = 1,
+  매우좋음 = 2,
+  좋음 = 3,
+  보통 = 4,
+  별로 = 5,
+  나쁨 = 6,
+  매우나쁨 = 7,
+  최악 = 8,
+}
 
 export type dataMiseAPI = {
   co: string;
