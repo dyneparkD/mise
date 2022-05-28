@@ -1,14 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faSearch,
-  faShareNodes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCamera, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faMap } from "@fortawesome/free-regular-svg-icons";
 import styles from "../styles/Navbar.module.scss";
 import { Link } from "react-router-dom";
 import { FC } from "react";
 import { NavbarProps } from "../types/type";
+import screenshot from "../service/screenshot";
 
 const Navbar: FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
   return (
@@ -22,10 +19,8 @@ const Navbar: FC<NavbarProps> = ({ showSidebar, setShowSidebar }) => {
           />
         </div>
         <ul className={styles.right}>
-          <li>
-            <Link to="/share" title="공유">
-              <FontAwesomeIcon icon={faShareNodes} />
-            </Link>
+          <li title="스크린샷" onClick={() => screenshot()}>
+            <FontAwesomeIcon icon={faCamera} />
           </li>
           <li>
             <Link to="/map" title="지도">

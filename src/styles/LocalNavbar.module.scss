@@ -1,7 +1,7 @@
 @use "./global" as *;
 
 .LocalNavbar {
-  background-color: $bg_dark;
+  background-color: $bg_nav;
   position: sticky;
   top: 0;
   z-index: 10;

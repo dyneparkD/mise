@@ -1,7 +1,5 @@
 @use "./global" as *;
 
-$tx_color: #979797;
-$bg: #000005d9;
 $br: 0.5rem;
 
 .Map {
@@ -29,9 +27,9 @@ $br: 0.5rem;
       button {
         padding: 0.5rem;
         width: 7rem;
-        background-color: $bg;
+        background-color: $bg_btn;
         border-radius: $br;
-        color: $tx_color;
+        color: $tx_btn;
         text-align: center;
         border: none;
         &:hover {
@@ -50,9 +48,9 @@ $br: 0.5rem;
       gap: 0.25rem;
       button {
         padding: 0.75rem;
-        background-color: $bg;
+        background-color: $bg_btn;
         border-radius: $br;
-        color: $tx_color;
+        color: $tx_btn;
         text-align: center;
         border: none;
         &:hover {
@@ -66,9 +64,9 @@ $br: 0.5rem;
       left: 8rem;
       width: 6rem;
       padding: 0.55rem 1rem;
-      background-color: $bg;
+      background-color: $bg_btn;
       border-radius: $br;
-      color: $tx_color;
+      color: $tx_btn;
       display: flex;
       justify-content: space-between;
       align-items: center;
